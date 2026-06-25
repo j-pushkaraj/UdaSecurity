@@ -9,3 +9,7 @@ target/
 
 # Java
 config.properties
+
+# Allow SpotBugs reports to be committed
+!security/target/site/spotbugs.html
+!security/target/spotbugsXml.xml
