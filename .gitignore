@@ -13,3 +13,7 @@ config.properties
 # Allow SpotBugs reports to be committed
 !security/target/site/spotbugs.html
 !security/target/spotbugsXml.xml
+
+# Allow JaCoCo reports to be committed
+!security/target/jacoco.exec
+!security/target/site/jacoco/
