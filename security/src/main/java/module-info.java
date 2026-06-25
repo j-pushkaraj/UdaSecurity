@@ -1,4 +1,4 @@
-//noinspection JavaRequiresAutoModule
+@SuppressWarnings({"JavaRequiresAutoModule", "requires-automatic"})
 module com.udacity.catpoint.security {
     requires com.udacity.catpoint.image;
     requires java.desktop;
