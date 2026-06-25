@@ -7,8 +7,7 @@ module com.udacity.catpoint.security {
     requires com.google.common;
     requires org.slf4j;
 
-    opens com.udacity.catpoint.data;
-    opens com.udacity.catpoint.service;
+    opens com.udacity.catpoint.data to com.google.gson;
 
     exports com.udacity.catpoint.application;
     exports com.udacity.catpoint.data;

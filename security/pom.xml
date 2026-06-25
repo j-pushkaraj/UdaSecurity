@@ -111,7 +111,7 @@
                      </execution>
                      <execution>
                          <id>report</id>
-                         <phase>test</phase>
+                         <phase>verify</phase>
                          <goals>
                              <goal>report</goal>
                          </goals>
@@ -125,7 +125,7 @@
                  <version>3.0.0-M5</version>
                  <configuration>
                      <argLine>
-                         ${argLine} --add-opens com.udacity.catpoint.security/com.udacity.catpoint.service=ALL-UNNAMED
+                         @{argLine} --add-opens com.udacity.catpoint.security/com.udacity.catpoint.service=ALL-UNNAMED
                      </argLine>
                  </configuration>
              </plugin>
