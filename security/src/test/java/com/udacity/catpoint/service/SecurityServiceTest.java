@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -199,8 +200,8 @@ public class SecurityServiceTest {
 
         verify(securityRepository, times(1)).updateSensor(s1);
         verify(securityRepository, times(1)).updateSensor(s2);
-        assert(!s1.getActive());
-        assert(!s2.getActive());
+        assertFalse(s1.getActive());
+        assertFalse(s2.getActive());
     }
 
     // 11. If the system is armed-home while the camera shows a cat, set the alarm status to alarm.
@@ -226,14 +227,14 @@ public class SecurityServiceTest {
     @Test
     void getAlarmStatus() {
         when(securityRepository.getAlarmStatus()).thenReturn(AlarmStatus.ALARM);
-        assert(securityService.getAlarmStatus() == AlarmStatus.ALARM);
+        assertEquals(AlarmStatus.ALARM, securityService.getAlarmStatus());
     }
 
     @Test
     void getSensors() {
         Set<Sensor> sensors = Set.of(new Sensor("s1", SensorType.DOOR));
         when(securityRepository.getSensors()).thenReturn(sensors);
-        assert(securityService.getSensors() == sensors);
+        assertSame(sensors, securityService.getSensors());
     }
 
     @Test
@@ -253,7 +254,7 @@ public class SecurityServiceTest {
     @Test
     void getArmingStatus() {
         when(securityRepository.getArmingStatus()).thenReturn(ArmingStatus.ARMED_HOME);
-        assert(securityService.getArmingStatus() == ArmingStatus.ARMED_HOME);
+        assertEquals(ArmingStatus.ARMED_HOME, securityService.getArmingStatus());
     }
 
     @Test
@@ -312,5 +313,17 @@ public class SecurityServiceTest {
         securityService.changeSensorActivationStatus(sensor, true);
 
         verify(securityRepository, never()).setAlarmStatus(any(AlarmStatus.class));
+    }
+
+    @Test
+    void noCatDetectedAndActiveSensor_doesNotSetNoAlarm() {
+        Sensor sensor = new Sensor("Door", SensorType.DOOR);
+        sensor.setActive(true);
+        when(securityRepository.getSensors()).thenReturn(Set.of(sensor));
+        when(imageService.imageContainsCat(any(), anyFloat())).thenReturn(false);
+
+        securityService.processImage(new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB));
+
+        verify(securityRepository, never()).setAlarmStatus(AlarmStatus.NO_ALARM);
     }
 }
