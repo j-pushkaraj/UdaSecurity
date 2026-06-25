@@ -20,7 +20,7 @@ public class SensorPanel extends JPanel {
 <span class="nc" id="L20">    private JLabel newSensorName = new JLabel(&quot;Name:&quot;);</span>
 <span class="nc" id="L21">    private JLabel newSensorType = new JLabel(&quot;Sensor Type:&quot;);</span>
 <span class="nc" id="L22">    private JTextField newSensorNameField = new JTextField();</span>
-<span class="nc" id="L23">    private JComboBox newSensorTypeDropdown = new JComboBox(SensorType.values());</span>
+<span class="nc" id="L23">    private JComboBox&lt;SensorType&gt; newSensorTypeDropdown = new JComboBox&lt;&gt;(SensorType.values());</span>
 <span class="nc" id="L24">    private JButton addNewSensorButton = new JButton(&quot;Add New Sensor&quot;);</span>
 
     private JPanel sensorListPanel;
