@@ -1,0 +1,12 @@
+module com.udacity.catpoint.image {
+    exports com.udacity.catpoint.image;
+
+    requires software.amazon.awssdk.services.rekognition;
+    requires software.amazon.awssdk.auth;
+    requires software.amazon.awssdk.core;
+    requires software.amazon.awssdk.regions;
+    requires software.amazon.awssdk.awscore;
+    requires software.amazon.awssdk.utils;
+    requires org.slf4j;
+    requires transitive java.desktop;
+}

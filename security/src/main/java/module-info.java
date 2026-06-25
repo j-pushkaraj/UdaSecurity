@@ -1,0 +1,16 @@
+module com.udacity.catpoint.security {
+    requires com.udacity.catpoint.image;
+    requires java.desktop;
+    requires java.prefs;
+    requires miglayout.swing;
+    requires com.google.gson;
+    requires com.google.common;
+    requires org.slf4j;
+
+    opens com.udacity.catpoint.data;
+    opens com.udacity.catpoint.service;
+
+    exports com.udacity.catpoint.application;
+    exports com.udacity.catpoint.data;
+    exports com.udacity.catpoint.service;
+}
