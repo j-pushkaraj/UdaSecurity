@@ -29,7 +29,12 @@ public class ControlPanel extends JPanel {
 
         //create a map of each status type to a corresponding JButton
         buttonMap = Arrays.stream(ArmingStatus.values())
-                .collect(Collectors.toMap(status -> status, status -> new JButton(status.getDescription())));
+                .collect(Collectors.toMap(status -> status, status -> {
+                    JButton button = new JButton(status.getDescription());
+                    button.setOpaque(true);
+                    button.setBorderPainted(false);
+                    return button;
+                }));
 
         //add an action listener to each button that applies its arming status and recolors all the buttons
         buttonMap.forEach((k, v) -> {

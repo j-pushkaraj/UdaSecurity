@@ -29,23 +29,28 @@ public class ControlPanel extends JPanel {
 
         //create a map of each status type to a corresponding JButton
 <span class="nc" id="L31">        buttonMap = Arrays.stream(ArmingStatus.values())</span>
-<span class="nc" id="L32">                .collect(Collectors.toMap(status -&gt; status, status -&gt; new JButton(status.getDescription())));</span>
+<span class="nc" id="L32">                .collect(Collectors.toMap(status -&gt; status, status -&gt; {</span>
+<span class="nc" id="L33">                    JButton button = new JButton(status.getDescription());</span>
+<span class="nc" id="L34">                    button.setOpaque(true);</span>
+<span class="nc" id="L35">                    button.setBorderPainted(false);</span>
+<span class="nc" id="L36">                    return button;</span>
+                }));
 
         //add an action listener to each button that applies its arming status and recolors all the buttons
-<span class="nc" id="L35">        buttonMap.forEach((k, v) -&gt; {</span>
-<span class="nc" id="L36">            v.addActionListener(e -&gt; {</span>
-<span class="nc" id="L37">                securityService.setArmingStatus(k);</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">                buttonMap.forEach((status, button) -&gt; button.setBackground(status == k ? status.getColor() : null));</span>
-<span class="nc" id="L39">            });</span>
-<span class="nc" id="L40">        });</span>
+<span class="nc" id="L40">        buttonMap.forEach((k, v) -&gt; {</span>
+<span class="nc" id="L41">            v.addActionListener(e -&gt; {</span>
+<span class="nc" id="L42">                securityService.setArmingStatus(k);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">                buttonMap.forEach((status, button) -&gt; button.setBackground(status == k ? status.getColor() : null));</span>
+<span class="nc" id="L44">            });</span>
+<span class="nc" id="L45">        });</span>
 
         //map order above is arbitrary, so loop again in order to add buttons in enum-order
-<span class="nc" id="L43">        Arrays.stream(ArmingStatus.values()).forEach(status -&gt; add(buttonMap.get(status)));</span>
+<span class="nc" id="L48">        Arrays.stream(ArmingStatus.values()).forEach(status -&gt; add(buttonMap.get(status)));</span>
 
-<span class="nc" id="L45">        ArmingStatus currentStatus = securityService.getArmingStatus();</span>
-<span class="nc" id="L46">        buttonMap.get(currentStatus).setBackground(currentStatus.getColor());</span>
+<span class="nc" id="L50">        ArmingStatus currentStatus = securityService.getArmingStatus();</span>
+<span class="nc" id="L51">        buttonMap.get(currentStatus).setBackground(currentStatus.getColor());</span>
 
 
-<span class="nc" id="L49">    }</span>
+<span class="nc" id="L54">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

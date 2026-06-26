@@ -1,0 +1,6 @@
+<FindBugsFilter>
+    <Match>
+        <!-- Expose internal representation warnings are false positives for stateful service and repository fields. -->
+        <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2" />
+    </Match>
+</FindBugsFilter>

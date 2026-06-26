@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 /**
  * Image Recognition Service that can identify cats. Requires aws credentials to be entered in config.properties to work.
  */
-public class AwsImageService implements ImageService {
+public final class AwsImageService implements ImageService {
 
     private static final Logger log = LoggerFactory.getLogger(AwsImageService.class);
 

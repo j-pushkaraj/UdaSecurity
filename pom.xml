@@ -165,7 +165,7 @@
                     <artifactId>spotbugs-maven-plugin</artifactId>
                     <version>4.8.6.0</version>
                     <configuration>
-                        <excludeFilterFile>${maven.multiModuleProjectDirectory}/spotbugs-exclude.xml</excludeFilterFile>
+                        <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
                     </configuration>
                     <dependencies>
                         <dependency>
